@@ -197,10 +197,8 @@ const vueForm = () => {
           type: 'input',
           inputType: 'text',
           label: 'タイトル',
-          model: this.getUniqueStr(),
-          listBox: true,
-          required: false,
-          values: ['選択肢1']
+          model: this.getUniqueStr('input'),
+          required: false
         });
       },
       deleteBlock: function (index) {

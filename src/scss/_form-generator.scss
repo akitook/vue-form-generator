@@ -277,3 +277,37 @@
     }
   }
 }
+
+.select-wrap {
+  position: relative;
+
+  &::before {
+    position: absolute;
+    top: calc(50% - 5px);
+    right: 1em;
+    width: 8px;
+    height: 8px;
+    content: '';
+    border-bottom: 2px solid $color-black;
+    border-left: 2px solid $color-black;
+    transform: rotate(-45deg);
+  }
+}
+
+.field-select {
+  .field-wrap {
+    position: relative;
+
+    &::before {
+      position: absolute;
+      top: calc(50% - 5px);
+      right: 1em;
+      width: 8px;
+      height: 8px;
+      content: '';
+      border-bottom: 2px solid $color-black;
+      border-left: 2px solid $color-black;
+      transform: rotate(-45deg);
+    }
+  }
+}

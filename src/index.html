@@ -24,15 +24,17 @@
 						<div class="form-generator__col">
 							<div class="group">
 								<label class="required" for="type">質問形式</label>
-								<select v-model="block.type" @change="changeType(fieldsIndex, $event)" class="input types" required>
-									<option value="input">短いテキスト（50文字まで）の入力</option>
-									<option value="textArea">長いテキスト(1000文字まで)の入力</option>
-									<option value="checklist">
-										チェックボックス</option>
-									<option value="radios">ラジオボタン</option>
-									<option value="select">セレクトボックス</option>
-									<option value="upload">PDFファイルアップロード</option>
-								</select>
+								<div class="select-wrap">
+									<select v-model="block.type" @change="changeType(fieldsIndex, $event)" class="input types" required>
+										<option value="input">短いテキスト（50文字まで）の入力</option>
+										<option value="textArea">長いテキスト(1000文字まで)の入力</option>
+										<option value="checklist">
+											チェックボックス</option>
+										<option value="radios">ラジオボタン</option>
+										<option value="select">セレクトボックス</option>
+										<option value="upload">PDFファイルアップロード</option>
+									</select>
+								</div>
 							</div>
 						</div>
 					</div>
