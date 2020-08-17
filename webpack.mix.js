@@ -10,7 +10,7 @@ const cpx = require('cpx');
 require('laravel-mix-eslint');
 
 const sourcesPath = path.resolve('src');
-const outputPath = mix.inProduction() ? 'dist' : 'public';
+const outputPath = mix.inProduction() ? 'docs' : 'public';
 
 const copyFiles = `${sourcesPath}/**/*.{html,php,css,png,jpg,gif,svg,woff,woff2,eot,ttf,txt,md,pdf,webm,mp4,ico}`;
 const copyJavascriptFiles = `${sourcesPath}/**/js//plugin/*.js`;

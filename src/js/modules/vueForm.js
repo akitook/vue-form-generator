@@ -2,8 +2,7 @@ import Vue from 'vue';
 import VueFormGenerator from 'vue-form-generator';
 
 const vueForm = () => {
-  let formGenerator = new Vue({
-    el: '#form-generator',
+  const formGenerator = new Vue({
     components: {
       'vue-form-generator': VueFormGenerator.component
     },
@@ -128,7 +127,7 @@ const vueForm = () => {
           required: true
         };
         switch (type) {
-        case 'text':
+        case 'input':
           this.schema.fields.splice(fieldsIndex, 1, field);
           break;
         case 'textArea':
@@ -247,7 +246,7 @@ const vueForm = () => {
             .replace(/</g, '<')
             .replace(/>/g, '>');
           return json.replace(
-            /("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g,
+            /("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+-]?\d+)?)/g,
             function (match) {
               let cls = 'number';
               if (/^"/.test(match)) {
@@ -274,6 +273,8 @@ const vueForm = () => {
       }
     }
   });
+
+  formGenerator.$mount('#form-generator');
 };
 
 export default vueForm();
