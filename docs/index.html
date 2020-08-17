@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Document</title>
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="./css/style.css">
 </head>
 <body class="body">
 	<div class="page">
@@ -56,10 +56,10 @@
 						<li v-for="(value, valuesIndex) in block.values" :key="valuesIndex" class="option">
 							<span class="option__index">
 								<span v-if="block.type === 'checklist'">
-									<img src="img/common/icon_checkbox.svg" alt="" />
+									<img src="./img/common/icon_checkbox.svg" alt="" />
 								</span>
 								<span v-else-if="block.type === 'radios'">
-									<img src="img/common/icon_radio.svg" alt="" />
+									<img src="./img/common/icon_radio.svg" alt="" />
 								</span>
 								<span v-else-if="block.type === 'select'">
 									{{valuesIndex + 1}}.
@@ -67,26 +67,26 @@
 							</span>
 							<input type="text" class="option__input" v-model="block.values[valuesIndex]" required />
 							<button v-show="block.values.length > 1" @click="removeOption(fieldsIndex, valuesIndex)"
-								class="option__remove"><img src="img/common/icon_close.svg" alt=""></button>
+								class="option__remove"><img src="./img/common/icon_close.svg" alt=""></button>
 						</li>
 						<li class="add-button--small" @click="addOption(fieldsIndex)">選択肢を追加</li>
 					</ul>
 				</div>
 				<div class="form-generator__footer">
 					<div class="form-generator__sort">
-						<button @click="swapBefore(fieldsIndex)" v-show="fieldsIndex != 0"><img src="img/common/icon_arrow-up.svg"
+						<button @click="swapBefore(fieldsIndex)" v-show="fieldsIndex != 0"><img src="./img/common/icon_arrow-up.svg"
 								alt=""></button>
 						<button @click="swapAfter(fieldsIndex)" v-show="schema.fields.length != fieldsIndex + 1"><img
-								src="img/common/icon_arrow-down.svg" alt=""></button>
+								src="./img/common/icon_arrow-down.svg" alt=""></button>
 					</div>
 					<div class="form-generator__delete">
 						<button @click="deleteBlock(fieldsIndex)" :disabled="schema.fields.length <= 1"><img
-								src="img/common/icon_trash.svg" alt=""></button>
+								src="./img/common/icon_trash.svg" alt=""></button>
 					</div>
 				</div>
 			</div>
 			<div class="form-generator__add">
-				<button class="add-button" @click="addBlock"><img src="img/common/icon_plus-white.svg" alt="">項目を追加する</button>
+				<button class="add-button" @click="addBlock"><img src="./img/common/icon_plus-white.svg" alt="">項目を追加する</button>
 			</div>
 			<div class="code">
 				<div class="code__title">Schema</div>
