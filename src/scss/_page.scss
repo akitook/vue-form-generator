@@ -1,0 +1,12 @@
+.front {
+  .front-heading {
+    padding: 0 10px;
+    margin: 30px auto;
+    font-size: 20px;
+    text-align: center;
+
+    @include media-up(lg) {
+      font-size: 22px;
+    }
+  }
+}

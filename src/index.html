@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="body">
+	<div class="page">
+		<div id="form-generator" class="form-generator l-container">
+			<h2>応募フォームの作成</h2>
+			<div class="form-generator__block" v-for="(block, fieldsIndex) in schema.fields" :key="fieldsIndex">
+				<div class="form-generator__body">
+					<div class="form-generator__number">{{fieldsIndex + 1}}</div>
+					<div class="form-generator__row">
+						<div class="form-generator__col">
+							<div class="group">
+								<label class="required" for="title">タイトル</label>
+								<input type="text" name="title" v-model="block.label" placeholder="質問のタイトル" class="input" required />
+							</div>
+						</div>
+						<div class="form-generator__col">
+							<div class="group">
+								<label class="required" for="type">質問形式</label>
+								<select v-model="block.type" @change="changeType(fieldsIndex, $event)" class="input types" required>
+									<option value="input">短いテキスト（50文字まで）の入力</option>
+									<option value="textArea">長いテキスト(1000文字まで)の入力</option>
+									<option value="checklist">
+										チェックボックス</option>
+									<option value="radios">ラジオボタン</option>
+									<option value="select">セレクトボックス</option>
+									<option value="upload">PDFファイルアップロード</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="form-generator__require">
+						<div class="group">
+							<div class="checkbox">
+								<input type="checkbox" name="required" v-model="block.required" />
+								<label>{{block.label}}を必須入力項目にする</label>
+							</div>
+						</div>
+					</div>
+					<div class="form-generator__row">
+						<div class="group">
+							<label for="desc">説明</label>
+							<input type="text" name="desc" v-model="block.hint" placeholder="質問の説明（省略可）" class="input" required />
+						</div>
+					</div>
+				</div>
+				<div v-if="['checklist', 'radios', 'select'].includes(block.type)" class="form-generator__option">
+					<ul class="options">
+						<li v-for="(value, valuesIndex) in block.values" :key="valuesIndex" class="option">
+							<span class="option__index">
+								<span v-if="block.type === 'checklist'">
+									<img src="img/common/icon_checkbox.svg" alt="" />
+								</span>
+								<span v-else-if="block.type === 'radios'">
+									<img src="img/common/icon_radio.svg" alt="" />
+								</span>
+								<span v-else-if="block.type === 'select'">
+									{{valuesIndex + 1}}.
+								</span>
+							</span>
+							<input type="text" class="option__input" v-model="block.values[valuesIndex]" required />
+							<button v-show="block.values.length > 1" @click="removeOption(fieldsIndex, valuesIndex)"
+								class="option__remove"><img src="img/common/icon_close.svg" alt=""></button>
+						</li>
+						<li class="add-button--small" @click="addOption(fieldsIndex)">選択肢を追加</li>
+					</ul>
+				</div>
+				<div class="form-generator__footer">
+					<div class="form-generator__sort">
+						<button @click="swapBefore(fieldsIndex)" v-show="fieldsIndex != 0"><img src="img/common/icon_arrow-up.svg"
+								alt=""></button>
+						<button @click="swapAfter(fieldsIndex)" v-show="schema.fields.length != fieldsIndex + 1"><img
+								src="img/common/icon_arrow-down.svg" alt=""></button>
+					</div>
+					<div class="form-generator__delete">
+						<button @click="deleteBlock(fieldsIndex)" :disabled="schema.fields.length <= 1"><img
+								src="img/common/icon_trash.svg" alt=""></button>
+					</div>
+				</div>
+			</div>
+			<div class="form-generator__add">
+				<button class="add-button" @click="addBlock"><img src="img/common/icon_plus-white.svg" alt="">項目を追加する</button>
+			</div>
+			<div class="code">
+				<div class="code__title">Schema</div>
+				<pre v-if="model" v-html="prettyJSON(schema)"></pre>
+			</div>
+			<div @click="showModal" class="preview-button">
+				応募フォームのプレビュー
+			</div>
+			<transition name="modal">
+				<div v-if="isShowModal" class="modal">
+					<div class="modal__overlay" @click="closeModal"></div>
+					<div class="modal__content">
+						<vue-form-generator :schema="schema" :model="model" :options="formOptions"></vue-form-generator>
+						<div class="code">
+							<div class="code__title">Model</div>
+							<pre v-if="model" v-html="prettyJSON(model)"></pre>
+						</div>
+						<button class="close-button" @click="closeModal">close</button>
+					</div>
+				</div>
+			</transition>
+		</div>
+	</div>
+	<script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+.header {
+  position: relative;
+
+  @include media-up(md) {
+    position: relative;
+  }
+}
+
+.logo {
+  color: red;
+}

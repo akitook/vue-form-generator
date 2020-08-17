@@ -1,0 +1,48 @@
+// color
+$color-white: #fff;
+$color-black: #353e47;
+$color-gray: #657786; //text main
+$color-gray-light: #e1e8ed; //border
+$color-gray-ultralight: #f7f7f7; //background
+$color-main: #0016ff;
+$color-main-dark: #0016ff;
+$color-main-light: #4051ff;
+$color-main-ultralight: #f8fafe;
+$color-main-bg: #f0f1f7;
+$color-pink: #ed3e73;
+$color-red: #ff5252;
+$color-yellow: #fad508;
+$color-orange: #ff9800;
+
+// font-family
+$font-sans: "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN W3", "Noto Sans JP", Meiryo, メイリオ, sans-serif;
+$font-serif: Georgia,游明朝,"Yu Mincho",YuMincho,"Hiragino Mincho ProN",HGS明朝E,メイリオ,Meiryo,serif;
+
+// breakpoints
+$breakpoint-up: (
+  'xs': 'screen and (min-width: 425px)',
+  'sm': 'screen and (min-width: 554px)',
+  'md': 'screen and (min-width: 768px)',
+  'lg': 'screen and (min-width: 992px)',
+  'xl': 'screen and (min-width: 1200px)',
+) !default;
+
+$breakpoint-down: (
+  'xs': 'screen and (max-width: 424px)',
+  'sm': 'screen and (max-width: 553px)',
+  'md': 'screen and (max-width: 767px)',
+  'lg': 'screen and (max-width: 991px)',
+  'xl': 'screen and (max-width: 1199px)',
+) !default;
+
+@mixin media-up($breakpoint: md) {
+  @media #{map-get($breakpoint-up, $breakpoint)} {
+    @content;
+  }
+}
+
+@mixin media-down($breakpoint: md) {
+  @media #{map-get($breakpoint-down, $breakpoint)} {
+    @content;
+  }
+}
